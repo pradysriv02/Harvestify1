@@ -38,11 +38,11 @@ export default function Sidebar() {
   const router = useRouter();
 
   const handlenavigate = (getMenuItem) => {
-    if(status === 'unauthenticated') {
-      router.push('/unauth-page')
-      return
-    }
-    router.push(getMenuItem.path);
+    // if(status === 'unauthenticated') {
+    //   router.push('/unauth-page')
+    //   return
+    // }
+    router.push('/croprecommend');
   };
 
   return (

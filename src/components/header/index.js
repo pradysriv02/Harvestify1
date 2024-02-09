@@ -1,21 +1,22 @@
 "use client";
 
 import { GlobalContext } from "@/context";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut} from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 export default function Header() {
   const { sideBarOpen, setSideBarOpen } = useContext(GlobalContext);
 
-  const { status } = useSession();
+  // const { status } = useSession();
   const router = useRouter();
+  const status = true;
 
-  console.log(status);
+  // console.log(status);
 
-  useEffect(() => {
-    if (status === "authenticated") router.push("/");
-  }, [status]);
+  // useEffect(() => {
+  //   if (status === "authenticated") router.push("/");
+  // }, [status]);
 
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow">

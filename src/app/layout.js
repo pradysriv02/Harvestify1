@@ -1,8 +1,11 @@
 import GlobalState from "@/context";
+
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
+
+import Authprovider from '../Authprovider/Authprovider'
 // import NextAuthProvider from "@/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,17 +21,19 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {/* <NextAuthProvider> */}
           <GlobalState>
+          <Authprovider>
             <div className="flex h-screen overflow-hidden bg-white">
               <Sidebar />
-              {/* <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+              <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                 <Header />
                 <main>
                   <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
                     {children}
                   </div>
                 </main>
-              </div> */}
+              </div>
             </div>
+          </Authprovider>
           </GlobalState>
         {/* </NextAuthProvider> */}
       </body>
