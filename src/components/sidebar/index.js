@@ -17,14 +17,14 @@ const menuItems = [
     icon: <LuLayoutDashboard size={25} />,
   },
   {
-    id: "products",
-    label: "Products",
+    id: "Crop Recomendation",
+    label: "Crop Prediction",
     path: "/products",
     icon: <TbBrandProducthunt size={25} />,
   },
   {
-    id: "visitors",
-    label: "Visitors",
+    id: "Disease Prediction",
+    label: "Disease PredictioN",
     path: "/visitors",
     icon: <PiUsersFourLight size={25} />,
   },
@@ -53,7 +53,7 @@ export default function Sidebar() {
     >
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <Link href={"/"} className="text-[40px] text-white">
-          Analytics
+          Harvestify
         </Link>
       </div>
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear">
@@ -64,7 +64,7 @@ export default function Sidebar() {
                 <li key={menuItem.id}>
                   <label
                     onClick={() => handlenavigate(menuItem)}
-                    className={`group relative cursor-pointer flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark 
+                    className={`group relative cursor-pointer flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-graydark 
                              ${pathName.includes(menuItem.id) && "bg-graydark"}
                             `}
                   >
