@@ -1,7 +1,7 @@
 "use client";
 
 import { GlobalContext } from "@/context";
-import { signIn, signOut} from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
@@ -30,8 +30,7 @@ export default function Header() {
           onClick={() =>
             status === "authenticated" ? signOut() : signIn("google")
           }
-          className="inline-flex items-center justify-center bg-black px-6 py-2 text-lg text-white font-medium tracking-wide uppercase"
-        >
+          className="inline-flex items-center justify-center bg-black px-6 py-2 text-lg text-white font-medium tracking-wide uppercase">
           {status === "authenticated" ? "Logout" : "Login"}
         </button>
       </div>

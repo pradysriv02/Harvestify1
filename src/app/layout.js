@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 
-import Authprovider from '../Authprovider/Authprovider'
+import Authprovider from "../Authprovider/Authprovider";
 // import NextAuthProvider from "@/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         {/* <NextAuthProvider> */}
-          <GlobalState>
+        <GlobalState>
           <Authprovider>
             <div className="flex h-screen overflow-hidden bg-white">
               <Sidebar />
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </Authprovider>
-          </GlobalState>
+        </GlobalState>
         {/* </NextAuthProvider> */}
       </body>
     </html>
