@@ -7,6 +7,11 @@ import { useContext } from "react";
 import { GlobalContext } from "@/context";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { GiThreeLeaves } from "react-icons/gi";
+import { AiOutlineLogout } from "react-icons/ai";
+import { FaShop } from "react-icons/fa6";
+import { GiMedicines } from "react-icons/gi";
+
 // import { useSession } from "next-auth/react";
 
 const menuItems = [
@@ -17,16 +22,28 @@ const menuItems = [
     icon: <LuLayoutDashboard size={25} />,
   },
   {
-    id: "Crop Recomendation",
+    id: "croprecommend",
     label: "Crop Prediction",
     path: "/croprecommend",
     icon: <TbBrandProducthunt size={25} />,
   },
   {
-    id: "Disease Prediction",
-    label: "Disease PredictioN",
-    path: "/visitors",
+    id: "diseaseprediction",
+    label: "Disease Prediction",
+    path: "/diseaseprediction",
     icon: <PiUsersFourLight size={25} />,
+  },
+  {
+    id: "marketplace",
+    label: "Market Place",
+    path: "/marketplace",
+    icon: <FaShop size={25} />,
+  },
+  {
+    id: "fertilizer",
+    label: "Fertlizer Recommend",
+    path: "/fertilizer",
+    icon: <GiMedicines size={25} />,
   },
 ];
 
@@ -47,33 +64,51 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0
+      className={`absolute justify-between pt-3 pb-6 items-center left-0 top-0 z-9999 flex h-screen w-70 flex-col overflow-y-hidden duration-300 ease-linear lg:static lg:translate-x-0
     ${sideBarOpen ? "translate-x-0" : "-translate-x-full"}
     `}>
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <Link href={"/"} className="text-[40px] text-white">
-          Harvestify
-        </Link>
-      </div>
-      <div className="flex flex-col overflow-y-auto duration-300 ease-linear">
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
-          <div>
-            <ul className="mb-6 flex flex-col gap-1.5">
-              {menuItems.map((menuItem) => (
-                <li key={menuItem.id}>
-                  <label
-                    onClick={() => handlenavigate(menuItem)}
-                    className={`group relative cursor-pointer flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white duration-300 ease-in-out hover:bg-graydark 
-                             ${pathName.includes(menuItem.id) && "bg-graydark"}
+      <div>
+        <div className="flex items-center justify-between gap-2 px-10 py-5.5 lg:py-6.5">
+          <Link
+            href={"/"}
+            className="text-green-700 font-black text-[32px] items-center justify-between flex gap-1">
+            <GiThreeLeaves />
+            Harvestify
+          </Link>
+        </div>
+        <div className="flex flex-col overflow-y-auto duration-300 ease-linear">
+          <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+            <div>
+              <ul className="mb-6 flex flex-col gap-5">
+                {menuItems.map((menuItem) => (
+                  <li key={menuItem.id}>
+                    <label
+                      onClick={() => handlenavigate(menuItem)}
+                      className={`group relative cursor-pointer flex items-center gap-4 flex items-center rounded-sm py-4 px-6 rounded-xl text-white duration-300 ease-in-out hover:bg-graydark 
+                             ${
+                               (pathName.includes(menuItem.id) ||
+                                 (pathName == "/" &&
+                                   menuItem.id === "dashboard")) &&
+                               "border-[.5px] border-green-200 bg-green-100"
+                             }
                             `}>
-                    {menuItem.icon}
-                    {menuItem.label}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
+                      <div className="text-green-700">{menuItem.icon}</div>
+                      <div className="text-black">{menuItem.label}</div>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div className="flex-end">
+        <button
+          onClick={() => router.push("/register")}
+          className="inline-flex gap-1 items-center justify-center rounded-xl border-[.5px] border-gray-500 px-20 py-3 text-black">
+          Logout
+          <AiOutlineLogout />
+        </button>
       </div>
     </aside>
   );
