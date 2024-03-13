@@ -23,7 +23,7 @@ const menuItems = [
   },
   {
     id: "croprecommend",
-    label: "Crop Prediction",
+    label: "Fertilizer Prediction",
     path: "/croprecommend",
     icon: <TbBrandProducthunt size={25} />,
   },

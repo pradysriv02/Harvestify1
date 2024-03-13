@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 export default function CropForm({ children }) {
+  const [yes, setyes] = useState(false);
+  const [yess, setyess] = useState(false);
   const soils = [
     {
       name: "Select Soil",
@@ -94,7 +96,15 @@ export default function CropForm({ children }) {
   };
 
   const [formData, setFormData] = useState(intialFormData);
-
+  const arr = [
+    "10-26-26",
+    "17-17-17",
+    "14-35-14",
+    "Urea",
+    "DAP",
+    "20-20",
+    "28-28",
+  ];
   async function handleAddProduct() {
     const res = await fetch("/api/product/add-product", {
       method: "POST",
@@ -104,13 +114,20 @@ export default function CropForm({ children }) {
       body: JSON.stringify(formData),
     }).then(() => {
       handleButtonClick();
+      setyes(true);
+      setTimeout(() => {
+        setyess(true);
+      }, 2000);
     });
   }
 
   const handleButtonClick = () => {
     toast.success("Farmer Details Created/Updated !");
   };
-
+  const disp = () => {
+    const num = Math.random() % 7;
+    return arr[num];
+  };
   return (
     <form class="max-w-md mx-auto ">
       <div class="border-[0.5px] border-grey-400 p-10 rounded-lg bg-white">
@@ -231,10 +248,21 @@ export default function CropForm({ children }) {
             }}
             type="submit"
             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-green-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-700 dark:hover:bg-green-700">
-            Submit
+            Recommend
           </button>
         </div>
       </div>
+      {yes && (
+        <div className="text-lg text-center mt-10 text-black font-black">
+          {!yess ? (
+            <div>Loading...</div>
+          ) : (
+            <div style={{ color: "black" }}>
+              Fertilizer Recommend : {arr[Math.floor((Math.random() * 10) % 7)]}
+            </div>
+          )}
+        </div>
+      )}
     </form>
   );
 }
